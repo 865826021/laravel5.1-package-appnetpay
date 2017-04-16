@@ -1,0 +1,18 @@
+{
+    "name": "yuxiaoyang/appnetpay",
+    "description": "cmbchina netpay support in laravel 5.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yu xiao yang",
+            "email": "865826021@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+      "psr-4": {
+        "Yuxiaoyang\\Appnetpay\\": "src/"
+      }
+    }
+}
