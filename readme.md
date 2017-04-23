@@ -34,12 +34,16 @@ use Input;
 class AppnetpayController extends Controller
 {
     public $appnetpay;
+    
+    public function __construct()
+    {
+        //$this->appnetpay = new \Yuxiaoyang\Appnetpay\Appnetpay();
+        $this->appnetpay = new Appnetpay();
+    }
 
     //获取支付报文json数据
     public function pay()
     {
-        //$this->appnetpay = new \Yuxiaoyang\Appnetpay\Appnetpay();
-        $this->appnetpay = new Appnetpay();
         $params['amount'] = "0.01";
         $params['orderNo'] = rand(1000000000,9999999999);
         $params['branchNo'] = "0315";
@@ -57,9 +61,8 @@ class AppnetpayController extends Controller
 	      exit;
         }
         $params = json_decode($jsonRequestData, true);
-        $this->appnetpay = new Appnetpay();
         //公钥
-	    $pub_key = '*************************************************************';
+	$pub_key = '*************************************************************';
         $status = $this->appnetpay->verify($params,$pub_key);
         if($status){
             //修改数据库订单支付状态
@@ -69,9 +72,8 @@ class AppnetpayController extends Controller
     //获取公钥json数据
     public function publickey()
     {
-        $this->appnetpay = new Appnetpay();
         //密钥 16位大写+小写+数字
-	    $sMerchantKey = '************************';
+	$sMerchantKey = '************************';
         return $this->appnetpay->getPublicKey($sMerchantKey);
     }
 
